@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Delete Patient</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Internal Styles -->
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/736x/ed/b0/e2/edb0e2b3a9539803ed646387a68eb1fb.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            font-family: Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            margin-top: 5vh;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        label {
+            font-size: 1.5em;
+            color: black; /* Note: Font color set to black for visibility on white form control */
+            font-family: Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Delete Patient</h1>
+        <!-- Form for Patient Deletion -->
+        <form action="delete.php" method="get">
+            <div class="mb-3">
+                <label for="patient_id" class="form-label">Patient ID:</label>
+                <input type="text" class="form-control" id="patient_id" name="id" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Delete Patient</button>
+        </form>
+    </div>
+</body>
+
+</html>

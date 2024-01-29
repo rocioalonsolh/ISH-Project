@@ -1,0 +1,131 @@
+<!-- Comments added for clarity and best practices -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Update Patient Information</title>
+    <!-- Bootstrap and additional styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <style>
+                body {
+            background-image: url('https://i.pinimg.com/564x/a7/56/b2/a756b225230a24beb6a0218b8000a971.jpg');
+            background-size: contain;
+            background-position: center;
+            color: white;
+            text-align: center;
+            font-family: Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif, sans-serif;
+            margin: 2vh 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-top: 2vh;
+        }
+
+        .container {
+            margin-top: 2vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            text-align: left;
+            width: 80%;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .btn-primary {
+            background-color: #add8e6;
+            border-color: #add8e6;
+            width: 100%;
+            margin-top: 2vh;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            margin-top: 2vh;
+            width: 100%;
+        }
+
+        .radio-inline {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-inline input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Include navigation bar -->
+    <include src="navbarlogin.html"></include>
+
+    <!-- Container for the update form -->
+    <div class="container">
+        <!-- Update form -->
+        <form action="update.php?id=<?php echo $patient_id; ?>" method="post">
+            <!-- Heading -->
+            <h1>Update Patient Information</h1>
+
+            <!-- Patient Name -->
+            <label for="patient_name">Patient Name:</label>
+            <input type="text" id="patient_name" name="patient_name" value="<?php echo $patient_data['patient_name']; ?>" required>
+
+            <!-- Gender -->
+            <label>Gender:</label>
+            <div class="radio-inline">
+                <input type="radio" id="m" name="gender" value="M" <?php echo ($patient_data['gender'] === 'M') ? 'checked' : ''; ?>>
+                <label for="m">Male</label>
+            </div>
+            <div class="radio-inline">
+                <input type="radio" id="f" name="gender" value="F" <?php echo ($patient_data['gender'] === 'F') ? 'checked' : ''; ?>>
+                <label for="f">Female</label>
+            </div>
+
+            <!-- Date of Birth -->
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" value="<?php echo $patient_data['date_of_birth']; ?>" required>
+
+            <!-- Medical History -->
+            <label for="medical_history">Medical History:</label>
+            <input type="text" id="medical_history" name="medical_history" value="<?php echo $patient_data['medical_history']; ?>" required>
+
+            <!-- Medications -->
+            <label for="medications">Medications:</label>
+            <input type="text" id="medications" name="medications" value="<?php echo $patient_data['medications']; ?>" required>
+
+            <!-- Procedures -->
+            <label for="procedures">Procedures:</label>
+            <input type="text" id="procedures" name="procedures" value="<?php echo $patient_data['procedures']; ?>" required>
+
+            <!-- Buttons for Update and Cancel -->
+            <div class="text-center">
+                <button class="btn btn-primary">Update</button>
+                <a href="protected-content.php" class="btn btn-secondary">Cancel operation</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

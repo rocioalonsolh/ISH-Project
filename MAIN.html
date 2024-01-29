@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocMed</title>
+  <!-- Include Montserrat font from Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <style>
+    /* Styles for the body and background */
+    body {
+      background-image: url('https://i.pinimg.com/originals/d2/af/af/d2afafe06aae0b32acdc7c1cd8916f68.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      font-family: Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Heading styles */
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-top: 0;
+    }
+
+    /* Navigation styles */
+    nav {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Initially off-screen */
+      width: 250px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding-top: 60px;
+      transition: 0.5s; /* Add transition for smooth animation */
+      z-index: 1; /* Ensure menu is above content */
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #ccc;
+    }
+
+    #menuToggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 2; /* Place the button above content */
+    }
+
+    #menuToggle:hover {
+      color: #ccc;
+    }
+
+    /* Background overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: inherit;
+      background-size: cover;
+      background-position: center;
+      filter: blur(5px);
+      z-index: -1;
+    }
+
+    /* Styles for the modal */
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 3;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+      padding-top: 60px;
+    }
+
+    #modalContent {
+      color: black; /* Change text color to black */
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    #closeModal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    #closeModal:hover,
+    #closeModal:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    /* Styles for the login form */
+    #loginForm {
+      display: none;
+      background-color: rgba(151, 219, 241, 0.906); /* Light blue color, adjust as per preference */
+      position: fixed;
+      top: 10;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px; /* Set maximum width for the login window */
+    }
+
+    #loginForm form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #loginForm label {
+      color: black; /* Change text color to black */
+      margin-bottom: 5px;
+    }
+
+    #loginBtn {
+      font-family: 'Montserrat', sans-serif; /* Add this line */
+      background-color: #4c4caf;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      width: 70%;
+      border: none;
+      margin-top: 10px;
+    }
+
+    /* Target the registration form for display */
+    #registerForm:target {
+      display: block;
+    }
+
+    /* Styles for the registration form */
+    #registerForm {
+      display: none;
+      background-color: rgba(151, 219, 241, 0.906);
+      position: fixed;
+      top: 10;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    #registerForm form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #registerForm label {
+      color: black;
+      margin-bottom: 5px;
+    }
+
+    #registerBtn {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #4c4caf;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      width: 70%;
+      border: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Modal content for EHR information -->
+  <div id="myModal">
+    <div id="modalContent">
+      <span id="closeModal">&times;</span>
+      <p>An electronic health record (EHR) is a digital version of a patient’s paper chart. EHRs are real-time, patient-centered records that make information available instantly and securely to authorized users. While an EHR does contain the medical and treatment histories of patients, an EHR system is built to go beyond standard clinical data collected in a provider’s office and can be inclusive of a broader view of a patient’s care. EHRs are a vital part of health IT and can:
+
+      Contain a patient’s medical history, diagnoses, medications, treatment plans, immunization dates, allergies, radiology images, and laboratory and test results
+      Allow access to evidence-based tools that providers can use to make decisions about a patient’s care
+      Automate and streamline provider workflow
+      One of the key features of an EHR is that health information can be created and managed by authorized providers in a digital format capable of being shared with other providers across more than one health care organization. EHRs are built to share information with other health care providers and organizations – such as laboratories, specialists, medical imaging facilities, pharmacies, emergency facilities, and school and workplace clinics – so they contain information from all clinicians involved in a patient’s care.</p>
+    </div>
+  </div>
+
+  <!-- Login form -->
+  <div id="loginForm">
+    <form action="login.php" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+  
+      <label for="passwordlogin">Password:</label>
+      <input type="passwordlogin" id="passwordlogin" name="passwordlogin" required>
+  
+      <button type="submit" id="loginBtn">Login</button>
+    </form>
+  </div>
+
+  <!-- Registration form -->
+  <div id="registerForm">
+    <form action="register.php" method="post">
+       <label for="name">Name:</label>
+       <input type="text" id="name" name="name" required>
+ 
+       <label for="lastName">Last Name:</label>
+       <input type="text" id="lastName" name="lastName" required>
+ 
+       <label for="email">Email:</label>
+       <input type="email" id="email" name="email" required>
+ 
+       <label for="password">Password:</label>
+       <input type="password" id="password" name="password" required>
+ 
+       <label for="specialty">Specialty:</label>
+       <input type="text" id="specialty" name="specialty" required>
+ 
+       <button type="submit" id="registerBtn">Register</button>
+    </form>
+ </div>
+ 
+
+  <!-- Navigation and main content -->
+  <div id="menuToggle">&#9776;</div>
+  <nav>
+    <ul>
+      <li><a href="the_ehr.html">The EHR</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="new_registration.html">New Dr Registration</a></li>
+      <li><a href="about_us.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <h1>DocMed</h1>
+  <h2>Main Menu</h2>
+
+  <script>
+    // Toggle navigation menu visibility
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      var nav = document.querySelector('nav');
+      if (nav.style.left === '0px') {
+        nav.style.left = '-250px';
+      } else {
+        nav.style.left = '0px';
+      }
+    });
+
+    // Show modal on clicking The EHR
+    document.querySelector('nav a[href="#"]').addEventListener('click', function() {
+      document.getElementById('myModal').style.display = 'block';
+    });
+
+    // Close modal on clicking "x"
+    document.getElementById('closeModal').addEventListener('click', function() {
+      document.getElementById('myModal').style.display = 'none';
+    });
+
+    // Close modal on clicking outside the content
+    window.onclick = function(event) {
+      var modal = document.getElementById('myModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+
+    // Show login form on clicking Login
+    document.getElementById('loginLink').addEventListener('click', function() {
+      document.getElementById('loginForm').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>John Doe's Medical Information</title>
+    <!-- Include HTML Include JS for modular inclusion of elements -->
+    <script src="https://unpkg.com/htmlincludejs"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!-- Internal Styles -->
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/564x/d3/a9/e3/d3a9e310e735b1a131269ec03512d0f8.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+            text-align: center;
+            font-family: Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .container {
+            margin-top: 20vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .medical-info {
+            margin-right: 20px;
+            text-align: left;
+        }
+
+        .image-container {
+            text-align: left;
+        }
+
+        .thumbnail {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+        }
+
+        .upload-button {
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #add8e6; /* Light blue color */
+            border-color: #add8e6;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <h1>DocMed</h1>
+    <h2>John Doe's Medical Information</h2>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <!-- Medical Information Section -->
+        <div class="medical-info">
+            <p style="font-size: 16px;">Here's the medical information for John Doe:</p>
+            <ul>
+                <li>Gender: Male</li>
+                <li>Date of Birth: 1987-05-15</li>
+                <li>Medical History: Hypertension</li>
+                <li>Medications: Lisinopril, Amlodipine</li>
+                <li>Allergies: None</li>
+                <li>Procedures: None</li>
+                <li>Primary Care Physician: Dr. Smith</li>
+            </ul>
+        </div>
+
+        <!-- Image Section -->
+        <div class="image-container">
+            <h3 style="font-size: 18px;">Last Medical Images</h3>
+            <!-- Thumbnails of Last Medical Images -->
+            <img src="https://i.pinimg.com/564x/a4/a7/ce/a4a7ce2566d595ab4d85122c860a73fc.jpg" alt="Last Medical Images 1" class="thumbnail">
+            <img src="https://i.pinimg.com/564x/7c/bd/07/7cbd0773e25c3b44648b5672764ee5f6.jpg" alt="Last Medical Images 2" class="thumbnail">
+            <img src="https://i.pinimg.com/564x/1b/59/70/1b597060671b865fd3af3c007dd46b8e.jpg" alt="Last Medical Images 3" class="thumbnail">
+            <img src="https://i.pinimg.com/564x/4b/57/d7/4b57d72609fbe8d32efac88a95e3772a.jpg" alt="Last Medical Images 4" class="thumbnail">
+            <img src="https://i.pinimg.com/564x/4b/57/d7/4b57d72609fbe8d32efac88a95e3772a.jpg" alt="Last Medical Images 5" class="thumbnail">
+            <!-- Upload Button for New Images -->
+            <div class="upload-button">
+                <button class="btn btn-primary">Upload New Images</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
